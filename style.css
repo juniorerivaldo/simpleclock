@@ -5,6 +5,11 @@
 
 body{
     background: linear-gradient(to right, hsl(200, 100%, 50%), hsl(175, 100%, 50%));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Hide scrollbars */
 }
 
 .clock{
@@ -24,6 +29,7 @@ body{
     text-align: center;
     transform: rotate(var(--rotation));
 }
+
 
 .clock .number1{ --rotation: 30deg; }
 .number1 h3{ transform: rotate(-30deg);}
@@ -57,3 +63,48 @@ body{
 
 .clock .number11{ --rotation: 330deg; }
 .number11 h3{ transform: rotate(-330deg);}
+
+.clock .hand{
+    --rotation: 0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 10px;
+    height: 35%;
+    border: 1px solid white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transform-origin: bottom; /* initial rotation  Origin point of midle of clock for hand*/
+    transform: translateX(-50%) rotate(var(--rotation)); /* initial translation ADJUST TO CENTER OF NUMBERS */
+}
+
+.clock::after{
+    content: '';
+    position: absolute;
+    background-color: black;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+
+}
+
+.clock .hand.seconds{
+    width: 4px;
+    height: 38%;
+    background-color: red;
+}
+
+.clock .hand.minutes{
+    width: 7px;
+    height: 35%;
+    background-color: black;
+}
+
+.clock .hand.hour{
+    width: 10px;
+    height: 33%;
+    background-color: black;
+}
